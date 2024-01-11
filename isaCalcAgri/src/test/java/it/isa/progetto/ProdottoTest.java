@@ -134,4 +134,15 @@ public class ProdottoTest {
         assertEquals(TipoProdotto.TRASFORMAZIONE, olioIbrida.getTipo());
         assertEquals(22.0, olioIbrida.getIVA());
     }
+
+    @Test
+    void testEquals() {
+        Prodotto p1 = Prodotto.creaPiantaLavanda();
+        Prodotto p2 = Prodotto.creaPiantaLavanda();
+        Prodotto p3 = Prodotto.creaPiantaSalvia();
+        assertTrue(p1.equals(p2));
+        assertTrue(p2.equals(p1));
+        assertFalse(p1.equals(p3));
+        assertFalse(p3.equals(p1));
+    }
 }

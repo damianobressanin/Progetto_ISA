@@ -1,5 +1,7 @@
 package it.isa.progetto;
 
+import java.util.Objects;
+
 public class Prodotto {
     private String nome;
     private double prezzo;
@@ -81,12 +83,39 @@ public class Prodotto {
         return IVA;
     }
 
+    @Override
     public String toString() {
-        return "Prodotto{" +
-                "nome='" + nome + '\'' +
-                ", prezzo=" + prezzo +
-                ", tipo=" + tipo +
-                ", IVA=" + IVA +
-                '}';
+        StringBuilder sb = new StringBuilder();
+        sb.append("Prodotto{");
+        sb.append("nome='").append(nome).append('\'');
+        sb.append(", prezzo=").append(prezzo);
+        sb.append(", tipo=").append(tipo);
+        sb.append(", IVA=").append(IVA);
+        sb.append('}');
+        return sb.toString();
+    }
+
+    /*
+     * Override di equals e di hashCode per manipolare meglio gli oggetti con le
+     * HashMap
+     */
+    @Override
+    public boolean equals(Object o) {
+        // due prodotti sono uguali se hanno lo stesso indirizzo di memoria
+        if (this == o) {
+            return true;
+        }
+        // se è null oppure sono classi diverse allora non sono uguali
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        // casting per poter accedere ai campi
+        Prodotto prodotto = (Prodotto) o;
+        return Objects.equals(this.getNome(), prodotto.getNome());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.getNome());
     }
 }
