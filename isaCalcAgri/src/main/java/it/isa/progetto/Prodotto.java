@@ -3,10 +3,10 @@ package it.isa.progetto;
 import java.util.Objects;
 
 public class Prodotto {
-    private String nome;
-    private double prezzo;
-    private TipoProdotto tipo;
-    private double IVA;
+    private final String nome;
+    private final double prezzo;
+    private final TipoProdotto tipo;
+    private final double IVA;
 
     private Prodotto(String nome, double prezzo, TipoProdotto tipo, double IVA) {
         this.nome = nome;
