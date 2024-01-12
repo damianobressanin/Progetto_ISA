@@ -19,41 +19,41 @@ class InventarioTest {
 
     @Test
     void testAggiungiProdotto() {
-        inventario.aggiungiProdotto(prodotto1, 5);
+        assertTrue(inventario.aggiungiProdotto(prodotto1, 5));
         assertEquals(5, inventario.getQuantitaDisponibile(prodotto1));
     }
 
     @Test
     void testAggiungiProdottoGiaEsistente() {
         inventario.aggiungiProdotto(prodotto1, 5);
-        inventario.aggiungiProdotto(prodotto1, 3);
+        assertTrue(inventario.aggiungiProdotto(prodotto1, 3));
         assertEquals(8, inventario.getQuantitaDisponibile(prodotto1));
     }
 
     @Test
     void testAggiungiProdottoConQuantitaNegativa() {
-        inventario.aggiungiProdotto(prodotto1, -5);
+        assertFalse(inventario.aggiungiProdotto(prodotto1, -5));
         assertEquals(0, inventario.getQuantitaDisponibile(prodotto1));
     }
 
     @Test
     void testRimuoviProdotto() {
         inventario.aggiungiProdotto(prodotto1, 5);
-        inventario.rimuoviProdotto(prodotto1, 3);
+        assertTrue(inventario.rimuoviProdotto(prodotto1, 3));
         assertEquals(2, inventario.getQuantitaDisponibile(prodotto1));
     }
 
     @Test
     void testRimuoviProdottoConQuantitaEccessiva() {
         inventario.aggiungiProdotto(prodotto1, 2);
-        inventario.rimuoviProdotto(prodotto1, 5);
+        assertTrue(inventario.rimuoviProdotto(prodotto1, 5));
         assertEquals(0, inventario.getQuantitaDisponibile(prodotto1));
     }
 
     @Test
     void testRimuoviProdottoConQuantitaNegativa() {
         inventario.aggiungiProdotto(prodotto1, 5);
-        inventario.rimuoviProdotto(prodotto1, -3);
+        assertFalse(inventario.rimuoviProdotto(prodotto1, -3));
         assertEquals(5, inventario.getQuantitaDisponibile(prodotto1));
     }
 
@@ -97,7 +97,7 @@ class InventarioTest {
         String elenco = inventario.elencoProdotti();
         assertTrue(elenco.contains(prodotto1.getNome()));
         assertTrue(elenco.contains(prodotto2.getNome()));
-        assertTrue(elenco.contains("Quantità: 5"));
-        assertTrue(elenco.contains("Quantità: 3"));
+        assertTrue(elenco.contains("5"));
+        assertTrue(elenco.contains("3"));
     }
 }

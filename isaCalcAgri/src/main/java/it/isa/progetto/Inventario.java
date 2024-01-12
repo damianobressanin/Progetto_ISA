@@ -10,15 +10,20 @@ public class Inventario {
         prodottiDisponibili = new HashMap<>();
     }
 
-    public void aggiungiProdotto(Prodotto prodotto, int quantita) {
-        // se l'utente inserisce un numero negativo viene ignorato
+    public boolean aggiungiProdotto(Prodotto prodotto, int quantita) {
+        // se l'utente inserisce un numero negativo
+        // allora viene ignorato
         if (quantita > 0) {
             prodottiDisponibili.put(prodotto, prodottiDisponibili.getOrDefault(prodotto, 0) + quantita);
+            return true;
+        } else {
+            return false;
         }
     }
 
-    public void rimuoviProdotto(Prodotto prodotto, int quantita) {
-        // se l'utente inserisce un numero negativo viene ignorato
+    public boolean rimuoviProdotto(Prodotto prodotto, int quantita) {
+        // se l'utente inserisce un numero negativo
+        // allora non modificare la quantità
         if (quantita > 0) {
             int quantitaDisponibile = getQuantitaDisponibile(prodotto);
             // se la quantità disponibile è maggiore o uguale alla quantità da rimuovere
@@ -29,6 +34,9 @@ public class Inventario {
                 // altrimenti azzera
                 azzeraProdotto(prodotto);
             }
+            return true;
+        } else {
+            return false;
         }
     }
 
