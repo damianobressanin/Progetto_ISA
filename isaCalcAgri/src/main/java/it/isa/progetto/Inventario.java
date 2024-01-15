@@ -10,7 +10,7 @@ public class Inventario {
         prodottiDisponibili = new HashMap<>();
     }
 
-    public boolean aggiungiProdotto(Prodotto prodotto, int quantita) {
+    boolean aggiungiProdotto(Prodotto prodotto, int quantita) {
         // se l'utente inserisce un numero negativo
         // allora viene ignorato
         if (quantita > 0) {
@@ -21,11 +21,11 @@ public class Inventario {
         }
     }
 
-    public boolean rimuoviProdotto(Prodotto prodotto, int quantita) {
+    boolean rimuoviProdotto(Prodotto prodotto, int quantita) {
         // se l'utente inserisce un numero negativo
         // allora non modificare la quantità
-        if (quantita > 0) {
-            int quantitaDisponibile = getQuantitaDisponibile(prodotto);
+        int quantitaDisponibile = getQuantitaDisponibile(prodotto);
+        if (quantita > 0 && quantitaDisponibile > 0) {
             // se la quantità disponibile è maggiore o uguale alla quantità da rimuovere
             // allora rimuovila
             if (quantitaDisponibile >= quantita) {
@@ -40,15 +40,15 @@ public class Inventario {
         }
     }
 
-    public void azzeraProdotto(Prodotto prodotto) {
+    void azzeraProdotto(Prodotto prodotto) {
         prodottiDisponibili.put(prodotto, 0);
     }
 
-    public int getQuantitaDisponibile(Prodotto prodotto) {
+    int getQuantitaDisponibile(Prodotto prodotto) {
         return prodottiDisponibili.getOrDefault(prodotto, 0);
     }
 
-    public boolean controllaDisponibilita(Prodotto prodotto, int quantita) {
+    boolean controllaDisponibilita(Prodotto prodotto, int quantita) {
         if (quantita > 0) {
             return (getQuantitaDisponibile(prodotto) >= quantita);
         } else {
@@ -56,7 +56,7 @@ public class Inventario {
         }
     }
 
-    public String elencoProdotti() {
+    String elencoProdotti() {
         StringBuilder sb = new StringBuilder();
         for (Map.Entry<Prodotto, Integer> entry : prodottiDisponibili.entrySet()) {
             sb.append(entry.getKey());
