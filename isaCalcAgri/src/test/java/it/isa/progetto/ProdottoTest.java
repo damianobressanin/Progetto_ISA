@@ -120,7 +120,7 @@ public class ProdottoTest {
         Prodotto olioAngustifolia = Prodotto.creaOlioAngustifolia();
         assertNotNull(olioAngustifolia);
         assertEquals("Olio essenziale angustifolia", olioAngustifolia.getNome());
-        assertEquals(11.0, olioAngustifolia.getPrezzo());
+        assertEquals(12.0, olioAngustifolia.getPrezzo());
         assertEquals(TipoProdotto.TRASFORMAZIONE, olioAngustifolia.getTipo());
         assertEquals(22.0, olioAngustifolia.getIVA());
     }
@@ -130,7 +130,7 @@ public class ProdottoTest {
         Prodotto olioIbrida = Prodotto.creaOlioIbrida();
         assertNotNull(olioIbrida);
         assertEquals("Olio essenziale ibrida", olioIbrida.getNome());
-        assertEquals(11.0, olioIbrida.getPrezzo());
+        assertEquals(10.0, olioIbrida.getPrezzo());
         assertEquals(TipoProdotto.TRASFORMAZIONE, olioIbrida.getTipo());
         assertEquals(22.0, olioIbrida.getIVA());
     }

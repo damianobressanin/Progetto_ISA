@@ -60,11 +60,11 @@ public class Prodotto {
     }
 
     static Prodotto creaOlioAngustifolia() {
-        return new Prodotto("Olio essenziale angustifolia", 11.0, TipoProdotto.TRASFORMAZIONE, 22.0);
+        return new Prodotto("Olio essenziale angustifolia", 12.0, TipoProdotto.TRASFORMAZIONE, 22.0);
     }
 
     static Prodotto creaOlioIbrida() {
-        return new Prodotto("Olio essenziale ibrida", 11.0, TipoProdotto.TRASFORMAZIONE, 22.0);
+        return new Prodotto("Olio essenziale ibrida", 10.0, TipoProdotto.TRASFORMAZIONE, 22.0);
     }
 
     String getNome() {
