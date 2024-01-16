@@ -85,10 +85,10 @@ public class VenditaTest {
     }
 
     @Test
-    void testAggiungiProdottoCarrelloQuantitaDisponibile() {
+    void testAggiungiProdottoCarrelloTuttaQuantitaDisponibile() {
         int quantitaDisponibile = inventario.getQuantitaDisponibile(prodotto1);
 
-        assertTrue(vendita.aggiungiProdottoCarrello(prodotto1, 10));
+        assertTrue(vendita.aggiungiProdottoCarrello(prodotto1, quantitaDisponibile));
         assertEquals(quantitaDisponibile, vendita.getQuantitaProdotto(prodotto1));
     }
 
