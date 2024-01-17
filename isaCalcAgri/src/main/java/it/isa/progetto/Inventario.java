@@ -58,10 +58,13 @@ public class Inventario {
 
     String elencoProdotti() {
         StringBuilder sb = new StringBuilder();
+        sb.append("\nINVENTARIO:\n");
         for (Map.Entry<Prodotto, Integer> entry : prodottiDisponibili.entrySet()) {
-            sb.append(entry.getKey());
+            sb.append(entry.getKey().getNome());
             sb.append(" - Quantità: ");
             sb.append(entry.getValue());
+            sb.append(" - Prezzo unitario: €");
+            sb.append(String.format("%.2f", entry.getKey().getPrezzo()));
             sb.append("\n");
         }
         return sb.toString();

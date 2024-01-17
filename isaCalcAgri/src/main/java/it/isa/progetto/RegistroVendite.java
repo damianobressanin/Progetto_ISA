@@ -1,6 +1,8 @@
 package it.isa.progetto;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -147,14 +149,26 @@ public class RegistroVendite {
     }
 
     String visualizzaRegistro() throws IOException {
+        StringBuilder sb = new StringBuilder();
+        sb.append("\nREGISTRO VENDITE AGRICOLE:\n");
+
         Map<String, double[]> datiVendite = new HashMap<>();
         datiVendite = caricaDatiEsistenti();
-        StringBuilder sb = new StringBuilder();
 
-        for (Map.Entry<String, double[]> entry : datiVendite.entrySet()) {
-            sb.append(entry.getKey());
-            for (double vendita : entry.getValue()) {
-                sb.append(" ").append(String.format("%.2f", vendita));
+        if (datiVendite.isEmpty()) {
+            sb.append("Nessuna vendita presente nel registro.\n");
+            return sb.toString();
+        }
+
+        List<Map.Entry<String, double[]>> datiOrdinati = new ArrayList<>(datiVendite.entrySet());
+        datiOrdinati.sort(Map.Entry.<String, double[]>comparingByKey().reversed());
+
+        for (Map.Entry<String, double[]> entry : datiOrdinati) {
+            sb.append("Dettagli delle vendite per ").append(entry.getKey()).append(":\n");
+            double[] venditeGiornaliere = entry.getValue();
+            for (int i = 0; i < ALIQUOTE_IVA.length; i++) {
+                sb.append("Aliquota IVA ").append(ALIQUOTE_IVA[i]).append("%: €")
+                        .append(String.format("%.2f", venditeGiornaliere[i])).append("\n");
             }
             sb.append("\n");
         }

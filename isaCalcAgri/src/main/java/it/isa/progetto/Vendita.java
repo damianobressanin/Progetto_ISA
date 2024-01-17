@@ -68,13 +68,15 @@ public class Vendita {
 
     String riepilogoVendita() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Totale: ").append(calcolaTotale()).append("\n\n");
-        sb.append("Totale scontrino immediato: ")
-                .append(calcolaTotaleCommerciale() + calcolaTotaleTrasformazione()).append("\n\n");
-        sb.append("Totale Agricolo: ").append(calcolaTotaleAgricolo()).append("\n");
-        sb.append("Totale Commerciale: ").append(calcolaTotaleCommerciale()).append("\n");
-        sb.append("Totale Trasformazione: ").append(calcolaTotaleTrasformazione()).append("\n\n");
-        sb.append("Contenuto del carrello: \n").append(visualizzaCarrello()).append("\n");
+        sb.append("Totale: €").append(String.format("%.2f", calcolaTotale())).append("\n\n");
+        sb.append("Totale scontrino fiscale immediato: €")
+                .append(String.format("%.2f", calcolaTotaleCommerciale() + calcolaTotaleTrasformazione()))
+                .append("\n\n");
+        sb.append("Totale Agricolo: €").append(String.format("%.2f", calcolaTotaleAgricolo())).append("\n");
+        sb.append("Totale Commerciale: €").append(String.format("%.2f", calcolaTotaleCommerciale())).append("\n");
+        sb.append("Totale Trasformazione: €").append(String.format("%.2f", calcolaTotaleTrasformazione()))
+                .append("\n\n");
+        sb.append(visualizzaCarrello()).append("\n");
         return sb.toString();
     }
 
@@ -118,10 +120,13 @@ public class Vendita {
 
     String visualizzaCarrello() {
         StringBuilder sb = new StringBuilder();
+        sb.append("\nCARRELLO:\n");
         for (Map.Entry<Prodotto, Integer> entry : carrello.entrySet()) {
             sb.append(entry.getKey().getNome());
             sb.append(" - Quantità: ");
             sb.append(entry.getValue());
+            sb.append(" - Prezzo unitario: €");
+            sb.append(String.format("%.2f", entry.getKey().getPrezzo()));
             sb.append("\n");
         }
         return sb.toString();
