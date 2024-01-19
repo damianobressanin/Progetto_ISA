@@ -1,8 +1,19 @@
 package it.isa.progetto;
 
-import org.junit.jupiter.api.*;
-import static org.junit.jupiter.api.Assertions.*;
-import java.io.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -71,6 +82,7 @@ class RegistroVenditeTest {
 
     }
 
+    @Test
     void testRegistraVenditaIvaDiversa() throws IOException {
         Date data = new Date();
         registroVendite.registraVendita(data, prodottoAgricolo1, 5);
@@ -94,6 +106,7 @@ class RegistroVenditeTest {
 
     }
 
+    @Test
     void testRegistraVenditaIvaUguale() throws IOException {
         Date data = new Date();
 
