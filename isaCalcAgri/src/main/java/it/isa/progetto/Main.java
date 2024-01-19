@@ -148,7 +148,7 @@ public class Main {
                 case 4:
                     quantita = getInteroPositivo(scanner,
                             "Inserisci la quantità da aggiungere a tutto l'inventario: ");
-                    aggiungiQuantitaTuttoInventario(inventario, quantita);
+                    inventario.aggiungiQuantitaTuttoInventario(quantita);
                     break;
                 case 5:
                     System.out.println(inventario.elencoProdotti());
@@ -217,22 +217,6 @@ public class Main {
         return getProdottoDaCodice(codice);
     }
 
-    private static void aggiungiQuantitaTuttoInventario(Inventario inventario, int quantita) {
-        inventario.aggiungiProdotto(Prodotto.creaPiantaLavanda(), quantita);
-        inventario.aggiungiProdotto(Prodotto.creaPiantaSalvia(), quantita);
-        inventario.aggiungiProdotto(Prodotto.creaPiantaRosmarino(), quantita);
-        inventario.aggiungiProdotto(Prodotto.creaMazzo(), quantita);
-        inventario.aggiungiProdotto(Prodotto.creaSacchettino(), quantita);
-        inventario.aggiungiProdotto(Prodotto.creaGufetto(), quantita);
-        inventario.aggiungiProdotto(Prodotto.creaCuore(), quantita);
-        inventario.aggiungiProdotto(Prodotto.creaSottoCuscino(), quantita);
-        inventario.aggiungiProdotto(Prodotto.creaCremaMani(), quantita);
-        inventario.aggiungiProdotto(Prodotto.creaBagnodoccia(), quantita);
-        inventario.aggiungiProdotto(Prodotto.creaSaponetta(), quantita);
-        inventario.aggiungiProdotto(Prodotto.creaOlioAngustifolia(), quantita);
-        inventario.aggiungiProdotto(Prodotto.creaOlioIbrida(), quantita);
-    }
-
     private static void gestioneNuoveVendite(Scanner scanner, Vendita vendita, Inventario inventario,
             RegistroVendite registroVendite) {
         System.out.println("\nSei nella GESTIONE DELLE NUOVE VENDITE:");
@@ -241,7 +225,7 @@ public class Main {
         int quantita = 0;
 
         while (continua) {
-            System.out.println("\nMENÙ NUOVA VENDITA:");
+            System.out.println("\nMENÙ VENDITA:");
             System.out.println("0. Esci");
             System.out.println("1. Aggiungi prodotto al carrello");
             System.out.println("2. Rimuovi prodotto dal carrello");

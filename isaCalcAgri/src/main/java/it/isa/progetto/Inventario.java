@@ -69,4 +69,26 @@ public class Inventario {
         }
         return sb.toString();
     }
+
+    boolean aggiungiQuantitaTuttoInventario(int quantita) {
+        if (quantita > 0) {
+            aggiungiProdotto(Prodotto.creaPiantaLavanda(), quantita);
+            aggiungiProdotto(Prodotto.creaPiantaSalvia(), quantita);
+            aggiungiProdotto(Prodotto.creaPiantaRosmarino(), quantita);
+            aggiungiProdotto(Prodotto.creaMazzo(), quantita);
+            aggiungiProdotto(Prodotto.creaSacchettino(), quantita);
+            aggiungiProdotto(Prodotto.creaGufetto(), quantita);
+            aggiungiProdotto(Prodotto.creaCuore(), quantita);
+            aggiungiProdotto(Prodotto.creaSottoCuscino(), quantita);
+            aggiungiProdotto(Prodotto.creaCremaMani(), quantita);
+            aggiungiProdotto(Prodotto.creaBagnodoccia(), quantita);
+            aggiungiProdotto(Prodotto.creaSaponetta(), quantita);
+            aggiungiProdotto(Prodotto.creaOlioAngustifolia(), quantita);
+            aggiungiProdotto(Prodotto.creaOlioIbrida(), quantita);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }
