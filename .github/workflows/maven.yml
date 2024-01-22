@@ -37,7 +37,7 @@ jobs:
       uses: mr-smithers-excellent/docker-build-push@v6
       with:
         image: bressa98/progetto_isa
-        tags: latest
+        tags: v1, latest
         dockerfile: isaCalcAgri/Dockerfile
         registry: docker.io
         username: ${{ secrets.DOCKER_USERNAME }}
