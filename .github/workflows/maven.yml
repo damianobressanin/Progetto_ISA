@@ -38,6 +38,7 @@ jobs:
       with:
         image: bressa98/progetto_isa
         tags: latest
+        dockerfile: isaCalcAgri/Dockerfile
         registry: docker.io
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
