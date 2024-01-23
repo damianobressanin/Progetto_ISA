@@ -22,7 +22,7 @@ public class Main {
             System.out.println("0. Esci");
             System.out.println("1. Gestione Inventario");
             System.out.println("2. Nuova Vendita");
-            System.out.println("3. Visualizza vendite agricole per data");
+            System.out.println("3. Visualizza vendite agricole in una data");
             System.out.println("4. Visualizza tutto registro vendite agricole");
             System.out.println("\n");
 
