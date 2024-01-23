@@ -15,7 +15,7 @@ public class RegistroVendite {
     private Map<String, double[]> venditeAgricolePerIVA;
     private SimpleDateFormat sdf;
     private final double[] ALIQUOTE_IVA = { 4.0, 5.0, 10.0, 22.0 };
-    private final String FILENAME = "vendite_agricole.txt";
+    private final String FILENAME = "data/vendite_agricole.txt";
 
     public RegistroVendite() {
         venditeAgricolePerIVA = new HashMap<>();
@@ -24,6 +24,11 @@ public class RegistroVendite {
     }
 
     private void setUp() {
+        File directory = new File("data");
+        if (!directory.exists()) {
+            directory.mkdir();
+        }
+
         File file = new File(FILENAME);
         if (!file.exists()) {
             try {

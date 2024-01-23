@@ -25,7 +25,7 @@ class RegistroVenditeTest {
     private static Prodotto prodottoAgricolo3;
     private static Prodotto prodottoAgricolo4;
     private static Prodotto prodottoAgricolo5;
-    private final String FILENAME = "vendite_agricole.txt";
+    private final String FILENAME = "data/vendite_agricole.txt";
 
     @BeforeAll
     static void setUpProdotti() {
@@ -35,6 +35,11 @@ class RegistroVenditeTest {
         prodottoAgricolo3 = Prodotto.creaCuore(); // iva al 22%
         prodottoAgricolo4 = Prodotto.creaPiantaSalvia(); // iva al 5%
         prodottoAgricolo5 = Prodotto.creaMazzo(); // iva al 4%
+
+        File directory = new File("data");
+        if (!directory.exists()) {
+            directory.mkdir();
+        }
     }
 
     @BeforeEach
