@@ -41,8 +41,7 @@ public class Inventario {
     }
 
     void azzeraProdotto(Prodotto prodotto) {
-        // prodottiDisponibili.put(prodotto, 0);
-        prodottiDisponibili.put(prodotto, 1); // introduco errore per testare pipeline
+        prodottiDisponibili.put(prodotto, 0);
     }
 
     int getQuantitaDisponibile(Prodotto prodotto) {
