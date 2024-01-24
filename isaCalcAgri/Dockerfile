@@ -7,4 +7,4 @@ RUN mkdir /app/data
 
 COPY isaCalcAgri/target/isaCalcAgri-1.0-SNAPSHOT.jar /app
 
-CMD ["java", "-jar", "/app/isaCalcAgri-1.0-SNAPSHOT.jar"]
+CMD ["java", "-cp", "/app/isaCalcAgri-1.0-SNAPSHOT.jar", "it.isa.progetto.Main"]

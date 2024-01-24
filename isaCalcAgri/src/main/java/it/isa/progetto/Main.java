@@ -10,7 +10,9 @@ public class Main {
         RegistroVendite registroVendite = new RegistroVendite();
         Vendita vendita = new Vendita(inventario, registroVendite);
 
-        System.out.println("\nBenvenuto nel programma di gestione delle vendite!!\n");
+        System.out.println("\nBenvenuto nel programma di gestione delle vendite!\n");
+
+        System.out.println("Modifica questa stringa per vedere se funziona CI/CD\n");
 
         gestioneInventario(scanner, inventario);
 
