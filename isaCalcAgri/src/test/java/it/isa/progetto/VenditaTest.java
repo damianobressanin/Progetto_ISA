@@ -197,7 +197,7 @@ public class VenditaTest {
     }
 
     @Test
-    void testFinalizzaVendita() {
+    void testFinalizzaVenditaDecrementaInventario() {
         vendita.aggiungiProdottoCarrello(prodotto1, 5);
         vendita.aggiungiProdottoCarrello(prodotto1, 1);
         vendita.aggiungiProdottoCarrello(prodotto2, -3);
