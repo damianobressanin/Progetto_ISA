@@ -23,6 +23,7 @@ public class RegistroVendite {
         setUp();
     }
 
+    // creazione cartella e file per salvare le vendite agricole
     private void setUp() {
         File directory = new File("data");
         if (!directory.exists()) {
@@ -39,6 +40,7 @@ public class RegistroVendite {
         }
     }
 
+    // per registrare in maniera opportuna una vendita nella HashMap
     void registraVendita(Date data, Prodotto prodotto, int quantita) {
         String dataFormattata = sdf.format(data);
         double[] venditeGiornaliere = venditeAgricolePerIVA.getOrDefault(dataFormattata,
@@ -48,6 +50,7 @@ public class RegistroVendite {
         venditeAgricolePerIVA.put(dataFormattata, venditeGiornaliere);
     }
 
+    // per trovare l'indice corrispondente all'iva fornita
     private int getIndexIVA(double iva) {
         for (int i = 0; i < ALIQUOTE_IVA.length; i++) {
             if (ALIQUOTE_IVA[i] == iva) {
@@ -58,6 +61,7 @@ public class RegistroVendite {
         return -1;
     }
 
+    // per salvare le vendite nel file
     void salvaVendite() {
         try {
             Map<String, double[]> datiEsistenti = caricaDatiEsistenti();
@@ -76,6 +80,7 @@ public class RegistroVendite {
         }
     }
 
+    // per caricare i dati esistenti nel file
     private Map<String, double[]> caricaDatiEsistenti() throws IOException {
         Map<String, double[]> dati = new HashMap<>();
         File file = new File(FILENAME);
@@ -95,17 +100,18 @@ public class RegistroVendite {
         return dati;
     }
 
+    // per scrivere i dati aggiornati nel file
     private void scriviDatiAggiornati(Map<String, double[]> datiAggiornati) throws IOException {
         try (FileWriter writer = new FileWriter(FILENAME, false)) {
             for (Map.Entry<String, double[]> entry : datiAggiornati.entrySet()) {
                 writer.write(formattaVenditeGiornaliere(entry.getKey(), entry.getValue()) + "\n");
             }
         }
-        // aggiungo il clear per pulire il registro dopo aver salvato le vendite
-        // altrimenti se salvo più volte sbaglia
+        // dopo aver salvato le vendite nel file, svuoto la HashMap
         venditeAgricolePerIVA.clear();
     }
 
+    // per formattare il testo da scrivere nel file
     private String formattaVenditeGiornaliere(String data, double[] vendite) {
         StringBuilder sb = new StringBuilder();
         sb.append(data);
@@ -115,6 +121,7 @@ public class RegistroVendite {
         return sb.toString();
     }
 
+    // restituisce una stringa che rappresenta le vendite in una data specifica
     String stampaVenditePerData(String dataRicerca) {
         StringBuilder sb = new StringBuilder();
 
@@ -153,6 +160,8 @@ public class RegistroVendite {
 
     }
 
+    // restituisce una stringa che rappresenta
+    // tutto il registro delle vendite agricole
     String visualizzaRegistro() throws IOException {
         StringBuilder sb = new StringBuilder();
         sb.append("\nREGISTRO VENDITE AGRICOLE:\n");

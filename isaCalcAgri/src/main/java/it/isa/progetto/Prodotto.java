@@ -8,6 +8,7 @@ public class Prodotto {
     private final TipoProdotto tipo;
     private final double IVA;
 
+    // Costruttore privato
     private Prodotto(String nome, double prezzo, TipoProdotto tipo, double IVA) {
         this.nome = nome;
         this.prezzo = prezzo;
@@ -15,6 +16,7 @@ public class Prodotto {
         this.IVA = IVA;
     }
 
+    // Metodi per creare i prodotti
     static Prodotto creaPiantaLavanda() {
         return new Prodotto("Pianta lavanda", 8.50, TipoProdotto.AGRICOLO, 10.0);
     }
@@ -95,10 +97,8 @@ public class Prodotto {
         return sb.toString();
     }
 
-    /*
-     * Override di equals e di hashCode per manipolare meglio gli oggetti con le
-     * HashMap
-     */
+    // Override di equals e di hashCode per manipolare meglio gli oggetti con le
+    // HashMap
     @Override
     public boolean equals(Object o) {
         // due prodotti sono uguali se hanno lo stesso indirizzo di memoria
@@ -111,6 +111,7 @@ public class Prodotto {
         }
         // casting per poter accedere ai campi
         Prodotto prodotto = (Prodotto) o;
+        // due prodotti sono uguali se hanno lo stesso nome
         return Objects.equals(this.getNome(), prodotto.getNome());
     }
 

@@ -12,8 +12,11 @@ public class Main {
 
         System.out.println("\nBenvenuto nel programma di gestione delle vendite!\n");
 
+        // stampa a video per verificare il corretto funzionamento della pipeline CI/CD
+        // e l'aggiornamento dell'immagine docker
         System.out.println("Modifica questa stringa per vedere il funzionamento della pipeline\n");
 
+        // all'apertura del programma si apre il menù per la gestione dell'inventario
         gestioneInventario(scanner, inventario);
 
         boolean continua = true;
@@ -68,7 +71,7 @@ public class Main {
 
     }
 
-    // per inserire le quantità nell'inventario o nel carrello
+    // costringe l'utente a inserire un numero intero positivo
     private static int getInteroPositivo(Scanner scanner, String messaggio) {
         int inserito = 0;
         while (true) {
@@ -88,6 +91,8 @@ public class Main {
     }
 
     // per le scelte nel menù
+    // costringe l'utente a inserire un numero intero positivo
+    // compreso tra min e max
     private static int getInteroPositivoRange(Scanner scanner, int min, int max) {
         if (min > max || min < 0 || max < 0) {
             return -1;
@@ -95,7 +100,7 @@ public class Main {
 
         int inserito = 0;
         while (true) {
-            System.out.print("Inserisci un numero intero compreso tra: " + min + " e " + max + " (inclusi): ");
+            System.out.print("Inserisci un numero intero compreso tra " + min + " e " + max + " (inclusi): ");
             inserito = getInteroPositivo(scanner, "");
 
             if (inserito < min || inserito > max) {
@@ -107,6 +112,7 @@ public class Main {
         }
     }
 
+    // per la gestione dell'inventario
     private static void gestioneInventario(Scanner scanner, Inventario inventario) {
         System.out.println("Sei nella GESTIONE DELL'INVENTARIO");
         boolean continua = true;
@@ -162,6 +168,7 @@ public class Main {
         }
     }
 
+    // per la stampa della legenda dei prodotti
     private static void stampaLegendaProdotti() {
         System.out.println("\nLEGENDA PRODOTTI:");
         System.out.println("1.  Pianta Lavanda");
@@ -180,6 +187,7 @@ public class Main {
         System.out.println("\n");
     }
 
+    // converte il codice del prodotto in un oggetto Prodotto
     private static Prodotto getProdottoDaCodice(int codice) {
         switch (codice) {
             case 1:
@@ -213,12 +221,14 @@ public class Main {
         }
     }
 
+    // prende l'input dell'utente e restituisce il prodotto corrispondente
     private static Prodotto getProdottoDaInput(Scanner scanner) {
         stampaLegendaProdotti();
         int codice = getInteroPositivoRange(scanner, 1, 13);
         return getProdottoDaCodice(codice);
     }
 
+    // per la gestione delle nuove vendite
     private static void gestioneNuoveVendite(Scanner scanner, Vendita vendita, Inventario inventario,
             RegistroVendite registroVendite) {
         System.out.println("\nSei nella GESTIONE DELLE NUOVE VENDITE:");

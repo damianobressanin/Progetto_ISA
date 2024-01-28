@@ -10,8 +10,9 @@ public class Inventario {
         prodottiDisponibili = new HashMap<>();
     }
 
+    // per aggiungere una certa quantità di un prodotto all'inventario
     boolean aggiungiProdotto(Prodotto prodotto, int quantita) {
-        // se l'utente inserisce un numero negativo
+        // se l'utente inserisce un numero <=0
         // allora viene ignorato
         if (quantita > 0) {
             prodottiDisponibili.put(prodotto, prodottiDisponibili.getOrDefault(prodotto, 0) + quantita);
@@ -21,9 +22,12 @@ public class Inventario {
         }
     }
 
+    // per rimuovere una certa quantità di un prodotto all'inventario
     boolean rimuoviProdotto(Prodotto prodotto, int quantita) {
-        // se l'utente inserisce un numero negativo
+        // se l'utente inserisce un numero <= 0
+        // oppure se l'inventario non contiene il prodotto
         // allora non modificare la quantità
+
         int quantitaDisponibile = getQuantitaDisponibile(prodotto);
         if (quantita > 0 && quantitaDisponibile > 0) {
             // se la quantità disponibile è maggiore o uguale alla quantità da rimuovere
@@ -40,14 +44,18 @@ public class Inventario {
         }
     }
 
+    // imposta la quantità disponibile di un prodotto a 0
     void azzeraProdotto(Prodotto prodotto) {
         prodottiDisponibili.put(prodotto, 0);
     }
 
+    // restituisce la quantità disponibile di un prodotto
     int getQuantitaDisponibile(Prodotto prodotto) {
         return prodottiDisponibili.getOrDefault(prodotto, 0);
     }
 
+    // controlla se la quantità disponibile di un prodotto
+    // è maggiore o uguale alla quantità richiesta
     boolean controllaDisponibilita(Prodotto prodotto, int quantita) {
         if (quantita > 0) {
             return (getQuantitaDisponibile(prodotto) >= quantita);
@@ -56,6 +64,7 @@ public class Inventario {
         }
     }
 
+    // per creare una stringa che rappresenta l'inventario e il suo contenuto
     String elencoProdotti() {
         StringBuilder sb = new StringBuilder();
         sb.append("\nINVENTARIO:\n");
@@ -70,7 +79,9 @@ public class Inventario {
         return sb.toString();
     }
 
-    boolean aggiungiQuantitaTuttoInventario(int quantita) {
+    // per aggiungere una certa quantità di tutti i prodotti nell'inventario
+    // usato per testare meglio il programma da terminale
+    void aggiungiQuantitaTuttoInventario(int quantita) {
         if (quantita > 0) {
             aggiungiProdotto(Prodotto.creaPiantaLavanda(), quantita);
             aggiungiProdotto(Prodotto.creaPiantaSalvia(), quantita);
@@ -85,10 +96,6 @@ public class Inventario {
             aggiungiProdotto(Prodotto.creaSaponetta(), quantita);
             aggiungiProdotto(Prodotto.creaOlioAngustifolia(), quantita);
             aggiungiProdotto(Prodotto.creaOlioIbrida(), quantita);
-            return true;
-        } else {
-            return false;
         }
     }
-
 }

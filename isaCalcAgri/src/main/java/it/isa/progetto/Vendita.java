@@ -15,13 +15,14 @@ public class Vendita {
         this.registroVendite = registroVendite;
     }
 
+    // per aggiungere una certa quantità di un prodotto al carrello
     boolean aggiungiProdottoCarrello(Prodotto prodotto, int quantita) {
         if (quantita <= 0) {
             return false;
         }
-        // Controllo disponibilità.
-        // Se l'utente vuole una quantità maggiore di quella disponibile nell'inventario
-        // allora aggiungi tutta la quantità disponibile nel carrello.
+        // Se il cliente vuole una quantità maggiore di quella disponibile
+        // nell'inventario
+        // allora aggiungi nel carrello tutta la quantità disponibile nell'inventario
         int quantitaCorrente = carrello.getOrDefault(prodotto, 0);
         if (inventario.controllaDisponibilita(prodotto, (quantita + quantitaCorrente)) == false) {
             int quantitaDisponibile = inventario.getQuantitaDisponibile(prodotto);
@@ -33,19 +34,21 @@ public class Vendita {
             }
 
         }
-        // Aggiorno il carrello
         carrello.put(prodotto, quantitaCorrente + quantita);
         return true;
     }
 
+    // per sapere la quantità di un prodotto nel carrello
     int getQuantitaProdotto(Prodotto prodotto) {
         return carrello.getOrDefault(prodotto, 0);
     }
 
+    // per impostare a zero la quantità di un prodotto nel carrello
     void azzeraProdotto(Prodotto prodotto) {
         carrello.put(prodotto, 0);
     }
 
+    // per rimuovere una certa quantità di un prodotto dal carrello
     boolean rimuoviProdotto(Prodotto prodotto, int quantita) {
         // se l'utente inserisce un numero negativo
         // oppure non c'è il prodotto sul carrello
@@ -66,6 +69,8 @@ public class Vendita {
         }
     }
 
+    // stringa che rappresenta l'importo totale della vendita
+    // e le componenti di cui è costituito
     String riepilogoVendita() {
         StringBuilder sb = new StringBuilder();
         sb.append("Totale: €").append(String.format("%.2f", calcolaTotale())).append("\n\n");
@@ -118,6 +123,7 @@ public class Vendita {
         return totale;
     }
 
+    // per creare una stringa che rappresenta il carrello e il suo contenuto
     String visualizzaCarrello() {
         StringBuilder sb = new StringBuilder();
         sb.append("\nCARRELLO:\n");
@@ -136,6 +142,7 @@ public class Vendita {
         carrello.clear();
     }
 
+    // per confermare la vendita dei prodotti nel carrello
     void finalizzaVendita() {
         // aggiungo al registroVendite solo i prodotti agricoli venduti
         for (Map.Entry<Prodotto, Integer> entry : carrello.entrySet()) {
@@ -147,7 +154,7 @@ public class Vendita {
         for (Map.Entry<Prodotto, Integer> entry : carrello.entrySet()) {
             inventario.rimuoviProdotto(entry.getKey(), entry.getValue());
         }
-        // Svuota il carrello dopo aver completato la vendita
+        // Svuoto il carrello dopo aver completato la vendita
         svuotaCarrello();
     }
 }
