@@ -12,7 +12,7 @@ public class Main {
 
         System.out.println("\nBenvenuto nel programma di gestione delle vendite!\n");
 
-        System.out.println("Modifica questa stringa per vedere se funziona la pipeline\n");
+        System.out.println("Modifica questa stringa per vedere il funzionamento della pipeline\n");
 
         gestioneInventario(scanner, inventario);
 
