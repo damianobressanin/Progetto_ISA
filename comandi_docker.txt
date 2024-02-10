@@ -1,0 +1,9 @@
+Per creare un volume:
+docker volume create volume_progetto_isa
+
+Per scaricare l'ultima versione dell'immagine (tag "latest"):
+docker pull bressa98/progetto_isa
+
+Per avviare per la prima volta il container:
+docker run -it --name container_progetto_isa -v volume_progetto_isa:/app/data bressa98/progetto_isa
+
